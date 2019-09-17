@@ -1,0 +1,104 @@
+<!-- ==================================== Table Data ========================================== -->
+<div class="container">
+    <h2>Short Answer</h2><br>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-outline-dark" (click)="isCreate()" data-toggle="modal"
+                data-target="#createModal">Create</button><br><br>
+            <div class="alert alert-danger" *ngIf="isOffline">Your Backend is offline</div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Answer</th>
+                        <th>Question Level</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let sa of short_answers">
+                        <td>{{sa.id}}</td>
+                        <td>{{sa.question}}</td>
+                        <td>{{sa.shortAnswer}}</td>
+                        <td>{{sa.questionLevel}}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-outline-secondary dropdown-toggle"
+                                    data-toggle="dropdown">
+                                    <span class="fa fa-ellipsis-h"></span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button class="btn btn-link dropdown-item" (click)="delete(sa.id)"> delete
+                                    </button>
+                                    <button class="btn btn-link dropdown-item" data-toggle="modal"
+                                        data-target="#createModal" (click)="get(sa.id)"> update </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================== Create Modal ========================================== -->
+<!-- The Modal -->
+<div class="modal" id="createModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 *ngIf="!isUpdate" class="modal-title">Create Short Answer</h4>
+                <h4 *ngIf="isUpdate" class="modal-title">Update Short Answer</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="isUpdate">
+                                    <input type="text" class="form-control" [(ngModel)]="id" name="id">
+                                </div>
+                                <div class="form-group">
+                                    <label>Question</label>
+                                    <textarea name="question" class="form-control" required rows="5"
+                                        [(ngModel)]="question"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label> Answer</label>
+                                    <input type="text" class="form-control" required name="answer"
+                                        [(ngModel)]="answer">
+                                </div>
+                                <div class="form-group">
+                                    <label>Question Level</label>
+                                    <select name="questionLevel" class="form-control" required
+                                        [(ngModel)]="questionLevel">
+                                        <option value="-1" disabled>Choose</option>
+                                        <option value="1">Low</option>
+                                        <option value="2">Medium</option>
+                                        <option value="3">Hight</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <button *ngIf="!isUpdate" class="btn btn-outline-dark" (click)="save()">Create</button>
+                                <button *ngIf="isUpdate" class="btn btn-outline-dark" (click)="update()">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

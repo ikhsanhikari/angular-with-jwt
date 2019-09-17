@@ -1,0 +1,35 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="#"><span class="fa fa-graduation-cap"></span> Hikari Learning</a>
+        <ul class="navbar-nav">
+            <li *ngIf="this.hardCodeAuthService.isUserLoggedIn()"><a routerLink="/welcome/ikhsanhikari"
+                    class="nav-link"> Home</a></li>
+            <li *ngIf="this.hardCodeAuthService.isUserLoggedIn()"><a routerLink="/short-answer" class="nav-link">Short
+                    Answer</a></li>
+            <li *ngIf="this.hardCodeAuthService.isUserLoggedIn()"><a routerLink="/multiple-choice" class="nav-link">Multiple Choice</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li *ngIf="!this.hardCodeAuthService.isUserLoggedIn()"><a routerLink="/login" class="nav-link">Login</a>
+            </li>
+            <!-- <li *ngIf="this.hardCodeAuthService.isUserLoggedIn()"><a routerLink="/logout" class="nav-link">Logout</a>
+            </li>
+            <li *ngIf="this.hardCodeAuthService.isUserLoggedIn()"><a routerLink="/feedback"
+                    class="nav-link">Feedback</a></li> -->
+            <li class="nav-link" *ngIf="this.hardCodeAuthService.isUserLoggedIn()">
+                <div class="dropdown dropleft">
+                    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+                        <span class="fa fa-bars text-white"></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button *ngIf="this.hardCodeAuthService.isUserLoggedIn()" class="dropdown-item"
+                            routerLink="/logout">Logout</button>
+                            <button *ngIf="this.hardCodeAuthService.isUserLoggedIn()" class="dropdown-item"
+                            routerLink="/short-answer-exercise">exercise</button>
+                        <button *ngIf="this.hardCodeAuthService.isUserLoggedIn()" class="dropdown-item"
+                            routerLink="/feedback">feedback</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>

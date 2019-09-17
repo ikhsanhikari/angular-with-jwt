@@ -1,0 +1,19 @@
+
+
+<div class="container">
+    <h1><span class="fa fa-graduation-cap"></span> Hikari Learning</h1>
+    <div class="row">
+        <div class="col-md-6">
+                <div class="alert alert-warning" *ngIf="invalidLogin">Invalid Login</div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="password">
+            </div>
+            <button class="btn bg-dark text-white" (click)="handleLoginJWTAuth()"><span class="fa fa-key"></span> Login</button>
+        </div>
+    </div>
+</div>

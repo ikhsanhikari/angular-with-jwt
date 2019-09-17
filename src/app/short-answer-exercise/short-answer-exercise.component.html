@@ -1,0 +1,88 @@
+<!-- <div class="container">
+    <h2>List Question</h2>
+    <div class="row">
+        <div *ngFor="let sa of short_answers; let i = index" [attr.data-index]="i" class="col-md-6">
+            <a href="#question{{i+1}}" class="btn btn-outline-dark" data-toggle="collapse">Question {{i+1}}</a>
+            <div id="question{{i+1}}" class="collapse">
+                <pre>
+                    {{sa.question}}
+                </pre>
+            </div>
+        </div> <br>
+    </div>
+    
+
+</div> -->
+
+
+<div class="container">
+    <h2>Short Answer Exercise</h2>
+    <p><strong>Note:</strong> Short answer is so <strong>hard</strong> </p>
+    <form [formGroup]="answersForm" (submit)="SaveData()">
+        <div id="accordion">
+            <div class="card " formArrayName="answerDetails"
+            *ngFor="let cd of answersForm.controls.answerDetails.controls ;let i=index; let a of short_answers">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#question{{i}}">
+                        Question {{i+1}}
+                    </a>
+                </div>
+                <div id="question{{i}}" formGroupName={{i}} class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                               <pre>{{cd.get('answer').value}}</pre> 
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label>Answer</label>
+                                    <input class="form-control form-control-sm" formControlName="answerText">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-outline-dark">Submit</button>
+    </form>
+</div>
+<!-- <div *ngFor="let a of short_answers">
+    {{a.question}}
+</div> -->
+<!-- 
+<div>
+    <form [formGroup]="answersForm" (submit)="SaveData()">
+        <table>
+            <tr>
+                <td>
+                    <b>School Name</b>
+                </td>
+                <td>
+                    <input type="text" formControlName="SchoolName" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr formArrayName="answerDetails"
+                *ngFor="let cd of answersForm.controls.answerDetails.controls ;let i=index;">
+                <td formGroupName={{i}}>
+                    <b>
+                        Answer {{cd.get('answer').value}}
+                    </b>
+                    <input type="text" formControlName="answerText" placeholder="Answer" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Click Me" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <p>{{test}}</p>
+</div> -->
